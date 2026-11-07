@@ -1,0 +1,76 @@
+{
+  "sample_pairs": 40000,
+  "train_pairs": 29976,
+  "test_pairs": 10024,
+  "unique_queries": 32227,
+  "sampling": "Fixed random sample of distinct non-conflicting US query-product pairs; seed 20261106",
+  "query_disjoint": true,
+  "heldout_auc": 0.727917620937592,
+  "heldout_accuracy": 0.7110933758978452,
+  "heldout_log_loss": 0.552031748392914,
+  "majority_baseline_accuracy": 0.6912410215482842,
+  "coverage_bins": [
+    {
+      "coverage_bin": "0\u201325%",
+      "pairs": 6142,
+      "exact_rate": 0.43194399218495605
+    },
+    {
+      "coverage_bin": "25\u201350%",
+      "pairs": 9593,
+      "exact_rate": 0.5638486396330658
+    },
+    {
+      "coverage_bin": "50\u201375%",
+      "pairs": 9012,
+      "exact_rate": 0.6559032401242787
+    },
+    {
+      "coverage_bin": "75\u2013100%",
+      "pairs": 15253,
+      "exact_rate": 0.8812692585065233
+    }
+  ],
+  "coefficients": [
+    {
+      "feature": "query_coverage",
+      "standardized_log_odds": 0.8469701673305988,
+      "odds_ratio_per_sd": 2.3325688414674346
+    },
+    {
+      "feature": "numeric_specs",
+      "standardized_log_odds": -0.004428987478426354,
+      "odds_ratio_per_sd": 0.9955808060228494
+    },
+    {
+      "feature": "attribute_mentions",
+      "standardized_log_odds": 0.030874486344794096,
+      "odds_ratio_per_sd": 1.0313560464951432
+    },
+    {
+      "feature": "structure",
+      "standardized_log_odds": 0.1301689914415404,
+      "odds_ratio_per_sd": 1.1390208518370946
+    },
+    {
+      "feature": "fluff_ratio",
+      "standardized_log_odds": -0.008156362386619936,
+      "odds_ratio_per_sd": 0.9918768104858129
+    },
+    {
+      "feature": "log_word_count",
+      "standardized_log_odds": -0.2471494673017876,
+      "odds_ratio_per_sd": 0.7810239472646899
+    }
+  ],
+  "interpretation": "Observational association with ESCI Exact relevance, not causal effects or shopping-agent preference. Correlated features and query mix can confound coefficients. No significance test is claimed.",
+  "split_note": "Query-disjoint holdout; products may recur across queries. No agent outcome labels exist in this dataset.",
+  "feature_definitions": {
+    "query_coverage": "unique non-stop query tokens present / unique non-stop query tokens",
+    "numeric_specs": "number+unit regex matches",
+    "attribute_mentions": "7 generic keyword-group mentions, not verified completeness",
+    "structure": "title presence + min(bullets/5,1) + description presence, divided by 3",
+    "fluff_ratio": "fixed promotional phrase tokens / all whitespace tokens",
+    "log_word_count": "log(1 + whitespace word count)"
+  }
+}
